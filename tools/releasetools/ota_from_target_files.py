@@ -875,6 +875,11 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     script.RunBackup("restore", sysmount, target_info.get('use_dynamic_partitions') == "true")
 
   script.WriteRawImage("/boot", "boot.img")
+  
+  # Force update recovery
+  common.ZipWriteStr(output_zip, "recovery.img", recover_img.data)
+  script.Comment("Patching recovery image...")
+  script.WriteRawImage("/recovery", "recovery.img")
 
   script.ShowProgress(0.1, 10)
   device_specific.FullOTA_InstallEnd()
@@ -1617,6 +1622,11 @@ else
         script.PatchPartitionExpr(target_expr, source_expr, '"boot.img.p"')
     else:
       logger.info("boot image unchanged; skipping.")
+      
+  # Force update reocvery
+  script.Comment("Patching recovery image")
+  common.ZipWriteStr(output_zip, "recovery.img", target_recovery.data)
+  common.WriteRawImage("/recovery", "recovery.img")
 
   # Do device-specific installation (eg, write radio image).
   device_specific.IncrementalOTA_InstallEnd()
