@@ -877,7 +877,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.WriteRawImage("/boot", "boot.img")
   
   # Force update recovery
-  common.ZipWriteStr(output_zip, "recovery.img", recover_img.data)
+  common.ZipWriteStr(output_zip, "recovery.img", recovery_img.data)
   script.Comment("Patching recovery image...")
   script.WriteRawImage("/recovery", "recovery.img")
 
@@ -1624,7 +1624,7 @@ else
       logger.info("boot image unchanged; skipping.")
       
   # Force update reocvery
-  script.Comment("Patching recovery image")
+  script.Comment("Patching recovery image...")
   common.ZipWriteStr(output_zip, "recovery.img", target_recovery.data)
   common.WriteRawImage("/recovery", "recovery.img")
 
