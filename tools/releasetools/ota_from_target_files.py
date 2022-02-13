@@ -1626,7 +1626,7 @@ else
   # Force update reocvery
   script.Comment("Patching recovery image...")
   common.ZipWriteStr(output_zip, "recovery.img", target_recovery.data)
-  common.WriteRawImage("/recovery", "recovery.img")
+  script.WriteRawImage("/recovery", "recovery.img")
 
   # Do device-specific installation (eg, write radio image).
   device_specific.IncrementalOTA_InstallEnd()
