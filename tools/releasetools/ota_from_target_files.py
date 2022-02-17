@@ -1452,7 +1452,7 @@ def WriteBlockIncrementalOTAPackage(target_zip, source_zip, output_file):
                    (source_boot.data != target_boot.data))
 
   target_recovery = common.GetBootableImage(
-      "/tmp/recovery.img", "recovery.img", OPTIONS.target_tmp, "RECOVERY")
+      "/tmp/IMAGES/recovery.img", "recovery.img", OPTIONS.target_tmp, "RECOVERY")
 
   block_diff_dict = GetBlockDifferences(target_zip=target_zip,
                                         source_zip=source_zip,
